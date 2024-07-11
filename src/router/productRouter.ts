@@ -1,25 +1,23 @@
 import express from "express";
+import {
+  addNewProduct,
+  deleteProduct,
+  getAllProducts,
+  getProduct,
+  updateProduct,
+} from "../controllers/productsController";
+
 const productRouter = express.Router();
 
 productRouter
   .route("/")
-  .get((req, res) => {
-    res.json({ message: "Product Router - GET Method" });
-  })
-  .post((req, res) => {
-    res.json({ message: "Product Router - POST Method" });
-  });
+  .get(getAllProducts)
+  .post(addNewProduct);
 
 productRouter
   .route("/:id")
-  .get((req, res) => {
-    res.json({ message: "Product Router - GET Method" });
-  })
-  .patch((req, res) => {
-    res.json({ message: "Product Router - PATCH Method" });
-  })
-  .delete((req, res) => {
-    res.json({ message: "Product Router - DELETE Method" });
-  });
+  .get(getProduct)
+  .patch(updateProduct)
+  .delete(deleteProduct);
 
 export default productRouter;
