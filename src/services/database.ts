@@ -1,23 +1,18 @@
 import mysql from "mysql2/promise";
 
 class Database {
-  private static instance: mysql.Connection | null = null;
+  private static instance: mysql.Pool | null = null;
 
   private constructor() {}
 
-  public static async getInstance(): Promise<mysql.Connection> {
+  public static getInstance(): mysql.Pool {
     if (this.instance == null) {
-      this.instance = await mysql.createConnection({
+      this.instance = mysql.createPool({
         host: "localhost",
         user: "root",
         port: 3306,
         password: "1234",
         database: "products",
-      });
-
-      this.instance.on("error", (error) => {
-        console.error("MySql connection error", error);
-        this.instance = null;
       });
     }
 
@@ -26,3 +21,13 @@ class Database {
 }
 
 export default Database;
+
+// const database = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   port: 3306,
+//   password: "1234",
+//   database: "products",
+// });
+
+// export default database;
