@@ -4,7 +4,7 @@ import Database from "./services/database";
 
 const app = express();
 const PORT = 3000;
-const db = Database.getIstance();
+const db = Database.getInstance();
 
 app.use(express.json());
 app.use("/api/v1/products", productRouter);
@@ -18,3 +18,4 @@ app.listen(PORT, async () => {
     (await db).end();
   }
 });
+

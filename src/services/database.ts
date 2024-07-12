@@ -5,7 +5,7 @@ class Database {
 
   private constructor() {}
 
-  public static async getIstance(): Promise<mysql.Connection> {
+  public static async getInstance(): Promise<mysql.Connection> {
     if (this.instance == null) {
       this.instance = await mysql.createConnection({
         host: "localhost",
