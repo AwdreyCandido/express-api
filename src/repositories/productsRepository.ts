@@ -18,14 +18,48 @@ class ProductsRepository {
 
   async find(id: number) {
     const [product] = await database.execute(
-      `SELECT * FROM products WHERE products.id = ${id}`
+      `
+      SELECT 
+        products.id, 
+        products.name, 
+        products.description, 
+        products.price, 
+        products.createdAt,
+        products.quantity,
+        products.tags,
+        categories.category,
+        departments.department
+      FROM products 
+      JOIN departments ON departments.id = products.departmentId 
+      JOIN categories ON categories.id = products.categoryId 
+      WHERE products.id = ${id}
+      `
     );
     return product;
   }
 
   async create(newProduct: IProduct) {
     const [result] = await database.execute(
-      `INSERT INTO products (name, description, price) VALUES ("${newProduct.name}", "${newProduct.description}", ${newProduct.price})`
+      `INSERT INTO products (
+        name, 
+        description, 
+        price, 
+        quantity, 
+        categoryId, 
+        departmentId, 
+        tags,
+        createdAt)
+       VALUES (
+        "${newProduct.name}", 
+        "${newProduct.description}", 
+         ${newProduct.price}, 
+         ${newProduct.quantity}, 
+         ${newProduct.departmentId}, 
+         ${newProduct.categoryId}, 
+        "${newProduct.tags}",
+        NOW()
+       )
+      `
     );
 
     return result;
@@ -33,7 +67,15 @@ class ProductsRepository {
 
   async update(id: number, updatedProduct: IProduct) {
     const [result] = await database.execute(`
-      UPDATE products SET name="${updatedProduct.name}", description="${updatedProduct.description}", price="${updatedProduct.price}" WHERE id = ${id}
+      UPDATE products SET 
+        name="${updatedProduct.name}", 
+        description="${updatedProduct.description}", 
+        price="${updatedProduct.price}" 
+        quantity="${updatedProduct.quantity}" 
+        categoryId="${updatedProduct.categoryId}" 
+        departmentId="${updatedProduct.departmentId}" 
+        tags="${updatedProduct.tags}"
+      WHERE id = ${id}
     `);
 
     return result;
