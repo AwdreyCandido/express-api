@@ -70,10 +70,10 @@ class ProductsRepository {
       UPDATE products SET 
         name="${updatedProduct.name}", 
         description="${updatedProduct.description}", 
-        price="${updatedProduct.price}" 
-        quantity="${updatedProduct.quantity}" 
-        categoryId="${updatedProduct.categoryId}" 
-        departmentId="${updatedProduct.departmentId}" 
+        price=${updatedProduct.price},
+        quantity=${updatedProduct.quantity},
+        categoryId=${updatedProduct.categoryId},
+        departmentId=${updatedProduct.departmentId},
         tags="${updatedProduct.tags}"
       WHERE id = ${id}
     `);
