@@ -100,10 +100,12 @@ export const deleteProduct = async (req: Request, res: Response) => {
     const id: number = +req.params.id;
     const result = await productsRepository.delete(id);
 
-    res.json({
-      message: "success",
-      data: result,
-    });
+    res
+      .status(200)
+      .json({
+        message: "success",
+        data: result,
+      });
   } catch (error) {
     res
       .status(500)
