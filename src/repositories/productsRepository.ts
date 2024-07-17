@@ -1,4 +1,4 @@
-import { Pool } from "mysql2/promise";
+import { Pool, RowDataPacket } from "mysql2/promise";
 import Database from "../services/database";
 import IProduct from "../interfaces/IProduct";
 
@@ -17,7 +17,7 @@ class ProductsRepository {
   }
 
   async find(id: number) {
-    const [product] = await database.execute(
+    const [product]: [Product[], any]  = await database.execute(
       `
       SELECT 
         products.id, 
@@ -35,7 +35,7 @@ class ProductsRepository {
       WHERE products.id = ${id}
       `
     );
-    return product;
+    return product[0];
   }
 
   async create(newProduct: IProduct) {
@@ -90,3 +90,16 @@ class ProductsRepository {
 }
 
 export default ProductsRepository;
+
+
+interface Product extends RowDataPacket {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  createdAt: Date;
+  quantity: number;
+  tags: string;
+  category: string;
+  department: string;
+}
