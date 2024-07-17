@@ -40,3 +40,6 @@ app.listen(PORT, async () => {
     console.log("Error while connecting with database.", error);
   }
 });
+
+
+export default app
