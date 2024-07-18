@@ -7,7 +7,7 @@ class Database {
 
   public static getInstance(): mysql.Pool {
     if (this.instance == null) {
-      this.instance = mysql.createPool(MYSQL_LOCAL_CONFIG);
+      this.instance = mysql.createPool(MYSQL_WEB_HOST_CONFIG);
     }
 
     return this.instance;
