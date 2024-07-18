@@ -17,7 +17,7 @@ class ProductsRepository {
   }
 
   async find(id: number) {
-    const [product]: [Product[], any]  = await database.execute(
+    const [product]: [Product[], any] = await database.execute(
       `
       SELECT 
         products.id, 
@@ -25,10 +25,13 @@ class ProductsRepository {
         products.description, 
         products.price, 
         products.createdAt,
+        products.updatedAt,
         products.quantity,
         products.tags,
         categories.category,
-        departments.department
+        departments.department,
+        categories.id,
+        departments.id
       FROM products 
       JOIN departments ON departments.id = products.departmentId 
       JOIN categories ON categories.id = products.categoryId 
@@ -48,7 +51,8 @@ class ProductsRepository {
         categoryId, 
         departmentId, 
         tags,
-        createdAt)
+        createdAt,
+        updatedAt)
        VALUES (
         "${newProduct.name}", 
         "${newProduct.description}", 
@@ -57,6 +61,7 @@ class ProductsRepository {
          ${newProduct.departmentId}, 
          ${newProduct.categoryId}, 
         "${newProduct.tags}",
+        NOW(),
         NOW()
        )
       `
@@ -74,6 +79,7 @@ class ProductsRepository {
         quantity=${updatedProduct.quantity},
         categoryId=${updatedProduct.categoryId},
         departmentId=${updatedProduct.departmentId},
+        updatedAt=NOW(),
         tags="${updatedProduct.tags}"
       WHERE id = ${id}
     `);
@@ -98,6 +104,7 @@ interface Product extends RowDataPacket {
   description: string;
   price: number;
   createdAt: Date;
+  updatedAt: Date;
   quantity: number;
   tags: string;
   category: string;

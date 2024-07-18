@@ -5,6 +5,7 @@ interface IProduct {
   price: number;
   createdAt: Date;
   // EXTRA FIELDS
+  updatedAt: Date;
   quantity?: number;
   categoryId?: number;
   departmentId?: number;

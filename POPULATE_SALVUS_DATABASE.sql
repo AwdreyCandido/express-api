@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS products(
     description TEXT,
     price NUMERIC,
     createdAt DATETIME,
+    updatedAt DATETIME,
     # EXTRA FIELDS
     categoryId INT,
     departmentId INT,
@@ -43,12 +44,12 @@ INSERT INTO categories (category) VALUES ('Ficção');
 INSERT INTO categories (category) VALUES ('Fitness');
 
 # POPULATE PRODUCTS TABLE
-INSERT INTO products (name, description, price, createdAt, categoryId, departmentId, quantity, tags) VALUES 
-('iPhone 13', 'Último modelo do iPhone 13 da Apple', 799.99, '2024-07-01 10:00:00', 1, 1, 50, 'smartphone,apple,iphone'),
-('Samsung Galaxy S21', 'Samsung Galaxy S21 com 128GB de armazenamento', 699.99, '2024-07-02 11:00:00', 1, 1, 30, 'smartphone,samsung,galaxy'),
-('Dell XPS 13', 'Ultrabook Dell XPS 13 com 16GB de RAM', 1199.99, '2024-07-03 12:00:00', 2, 1, 20, 'notebook,dell,xps'),
-('Instant Pot', 'Panela de pressão elétrica Instant Pot 7 em 1', 99.99, '2024-07-04 13:00:00', 3, 2, 100, 'cozinha,panela,instantpot'),
-('Harry Potter e a Pedra Filosofal', 'Primeiro livro da série Harry Potter', 19.99, '2024-07-05 14:00:00', 4, 3, 200, 'livro,ficcao,harrypotter');
+INSERT INTO products (name, description, price, createdAt, updatedAt, categoryId, departmentId, quantity, tags) VALUES 
+('iPhone 13', 'Último modelo do iPhone 13 da Apple', 799.99, '2024-07-01 10:00:00', '2024-07-01 10:00:00', 1, 1, 50, 'smartphone,apple,iphone'),
+('Samsung Galaxy S21', 'Samsung Galaxy S21 com 128GB de armazenamento', 699.99, '2024-07-02 11:00:00', '2024-07-02 11:00:00', 1, 1, 30, 'smartphone,samsung,galaxy'),
+('Dell XPS 13', 'Ultrabook Dell XPS 13 com 16GB de RAM', 1199.99, '2024-07-03 12:00:00', '2024-07-03 12:00:00', 2, 1, 20, 'notebook,dell,xps'),
+('Instant Pot', 'Panela de pressão elétrica Instant Pot 7 em 1', 99.99, '2024-07-04 13:00:00', '2024-07-04 13:00:00', 3, 2, 100, 'cozinha,panela,instantpot'),
+('Harry Potter e a Pedra Filosofal', 'Primeiro livro da série Harry Potter', 19.99, '2024-07-05 14:00:00', '2024-07-05 14:00:00', 4, 3, 200, 'livro,ficcao,harrypotter');
 
 COMMIT;
 
