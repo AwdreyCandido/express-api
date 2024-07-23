@@ -18,10 +18,10 @@ export default Database;
 
 
 const MYSQL_WEB_HOST_CONFIG = {
-  host: 'sql10.freemysqlhosting.net',
-  user: 'sql10720237',
-  password: 'TiPlIASGc5',
-  database: 'sql10720237',
+  host: 'sql5.freemysqlhosting.net',
+  user: 'sql5721754',
+  password: 'bfxiPf7YLe',
+  database: 'sql5721754',
   port: 3306,
   charset: 'utf8',
   connectionLimit: 10
